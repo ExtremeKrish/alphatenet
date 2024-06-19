@@ -1,230 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpha Tenet</title>
-    <style>
-        *{
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alpha Tenet</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            @font-face {
+                font-family: "Mabry Pro";
+                src: url(https://assets.gumroad.com/packs/static/19db990205089207b039.woff2);
+            }
+
+            @font-face {
+                font-family: "Mabry Pro";
+                src: url(https://assets.gumroad.com/packs/static/b155e959ca3c72194673.woff2);
+                font-style: italic;
+            }
+
+            @font-face {
+                font-family: "Mabry Pro";
+                src: url(https://assets.gumroad.com/packs/static/f301b7100da17db3c2c0.woff2);
+                font-weight: 700;
+            }
+
+            @font-face {
+                font-family: "Mabry Pro";
+                src: url(https://assets.gumroad.com/packs/static/aaec7850d09c0889a8b5.woff2);
+                font-weight: 700;
+                font-style: italic;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                font-family: Mabry Pro;
+            }
+
+            nav {
+                padding: 16px;
+                border-bottom: 1px solid black;
+                display: flex;
+                align-items: center;
+                position: fixed;
+                width: 100%;
+                background-color: white;
+                gap: 16px;
+                font-size: 20px;
+                z-index: 999;
+                user-select: none;
+            }
+
+            nav span {
+                flex: 1;
+                font-weight: 500;
+            }
+
+            nav svg.line {
+                height: 24px;
+                width: 24px;
+                fill: none;
+                stroke: currentColor;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 1.25;
+                cursor: pointer;
+
+            }
+
+            nav svg.fill {
+                height: 24px;
+                width: 24px;
+                cursor: pointer;
+            }
+
+            main {
+                margin-top: 56px;
+                padding: 16px;
+                min-height: 100vh;
+            }
+
+            .grid {
+                display: grid;
+                gap: 16px;
+                /* Adjust gap between items as needed */
+                width: 100%;
+                max-width: 100%;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .grid .item {
+                border: 1px solid black;
+                text-decoration: none;
+                color: black;
+                display: flex;
+                border-radius: 4px;
+                flex-direction: column;
+                box-shadow: 0 0 0 transparent;
+                transition: box-shadow 0.2s ease-in-out;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .grid .item:hover {
+                box-shadow: 4px 4px 0 black;
+            }
+
+            .grid .item img {
+                width: 100%;
+                border-radius: 3px 3px 0 0;
+                border-bottom: 1px solid black;
+                aspect-ratio: 1;
+               
+            }
+
+            .item .title {
+                padding: 16px;
+                flex: 1;
+                min-height: 70px;
+                display: flex;
+                font-weight: 400;
+                border-bottom: 1px solid black;
+                font-size: 19px;
+            }
+
+            .grid .item .pricetag {
+                font-size: 15px;
+                display: flex;
+            }
+
+            .grid .item .pricetag .rating {
+                flex: 1;
+                border-right: 1px solid black;
+                padding: 16px;
+                align-items: center;
+                display: flex;
+            }
+
+            .grid .item .pricetag .price {
+                padding: 16px;
+            }
+
+            .tag {
+                position: relative;
+                /* width: 80px;  Adjust as needed */
+                height: 26px;
+                /* Adjust as needed */
+                background-color: #fe90e0;
+                border: 1px solid black;
+                border-right: none;
+                display: flex;
+                align-items: center;
+                padding-left: 8px;
+                padding-right: 24px;
+            }
+
+            .tag::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0px;
+                width: 0;
+                height: 0;
+                border-top: 13px solid transparent;
+                /* Half of the height */
+                border-bottom: 13px solid transparent;
+                /* Half of the height */
+                border-right: 13px solid white;
+                /* Same as the height */
+            }
+
+            .tag::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 1px;
+                width: 0;
+                height: 0;
+                border-top: 13px solid transparent;
+                /* Half of the height */
+                border-bottom: 13px solid transparent;
+                /* Half of the height */
+                border-right: 13px solid #000;
+                /* Same as the height */
+            }
+
+            footer {
+                display: flex;
+                text-align: center;
+                padding: 16px;
+                flex-direction: column;
+            }
+
+            .fa-solid {
+                margin-right: 4px
+            }
+            .drawer-container {
+            position: relative;
         }
-        @font-face {
-  font-family: "Mabry Pro";
-  src: url(https://assets.gumroad.com/packs/static/19db990205089207b039.woff2);
-}
-@font-face {
-  font-family: "Mabry Pro";
-  src: url(https://assets.gumroad.com/packs/static/b155e959ca3c72194673.woff2);
-  font-style: italic;
-}
-@font-face {
-  font-family: "Mabry Pro";
-  src: url(https://assets.gumroad.com/packs/static/f301b7100da17db3c2c0.woff2);
-  font-weight: 700;
-}
-@font-face {
-  font-family: "Mabry Pro";
-  src: url(https://assets.gumroad.com/packs/static/aaec7850d09c0889a8b5.woff2);
-  font-weight: 700;
-  font-style: italic;
-}
-        body {
-            display: flex;
-            flex-direction: column;
-            font-family: Mabry Pro;
-        }
-        nav {
-            padding: 16px;
-            border-bottom: 1px solid black;
-            display: flex;
-            align-items: center;
+        .drawer {
             position: fixed;
-            width: 100%;
-            background-color: white;
-            gap: 16px;
-            font-size: 20px;
-            z-index: 999;
-            user-select: none;
-        }
-        nav span{
-            flex: 1;
-            font-weight: 500;
-        }
-        nav svg.line{
-            height: 24px;
-            width: 24px;
-            fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.25;
-        }
-        nav svg.fill{
-            height: 24px;
-            width: 24px;
-        }
-        main{
-            margin-top: 56px;
-            padding: 16px;
-            min-height: 100vh;
-        }
-        .grid{
-            display: grid;
-    gap: 16px; /* Adjust gap between items as needed */
-    width: 100%;
-    max-width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        
-}
-        .grid .item{
-            border: 1px solid black;
-            text-decoration: none;
-            color: black;
-            display: flex;
-            border-radius: 4px;
-            flex-direction: column;
-            box-shadow: 0 0 0 transparent;
-    transition: box-shadow 0.2s ease-in-out;
-        -webkit-tap-highlight-color: transparent;
-        }
-        .grid .item:hover {
-    box-shadow: 4px 4px 0 black;
-}
-        .grid .item img{
-            width: 100%;
-            border-radius: 3px 3px 0 0;
-        }
-    
-        .item .title{
-            padding: 16px;
-            flex: 1;
-            min-height: 70px;
-            display: flex;
-            font-weight: 400;
-            border-bottom: 1px solid black;
-            font-size: 19px;
-        }
-        .grid .item .pricetag{
-            font-size: 15px;
-            display: flex;
-        }
-        .grid .item .pricetag .rating{
-            flex: 1;
-            border-right: 1px solid black;
-            padding: 16px;
-            align-items: center;
-            display: flex;
-        }
-        .grid .item .pricetag .price{
-            padding: 16px;
-        }
-        .tag {
-    position: relative;
-   /* width: 80px;  Adjust as needed */
-    height: 26px; /* Adjust as needed */
-    background-color: #fe90e0;
-    border:1px solid black ;
-    border-right:none;
-    display:flex;
-    align-items:center;
-    padding-left:8px;
-    padding-right: 24px;
-    }
-    
-    .tag::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right:0px;
-    width: 0;
-    height: 0;
-    border-top: 13px solid transparent; /* Half of the height */
-    border-bottom: 13px solid transparent; /* Half of the height */
-    border-right: 13px solid white;
-    
-     /* Same as the height */
-    }
-    .tag::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 1px;
-    width: 0;
-    height: 0;
-    border-top: 13px solid transparent; /* Half of the height */
-    border-bottom: 13px solid transparent; /* Half of the height */
-    border-right: 13px solid #000;
-    
-     /* Same as the height */
-    }
-    footer{
-        display: flex;
-        text-align: center;
-        padding: 16px;
-        flex-direction: column;
-    }
-    .fa-solid{
-        margin-right: 4px
-    }
-    </style>
-</head>
-<body>
-    <nav>
-        <span>Alpha Tenet</span>
-        <svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(2.000000, 2.000000)"><circle cx="9.76659044" cy="9.76659044" r="8.9885584"></circle><line x1="16.0183067" y1="16.4851259" x2="19.5423342" y2="20.0000001"></line></g></svg>
-       <!-- <svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) translate(5.500000, 4.000000)"><line x1="6.7743" y1="15.7501" x2="6.7743" y2="0.7501"></line><path d="M12.7988,9.6998 C12.7988,9.6998 9.5378,15.7498 6.7758,15.7498 C4.0118,15.7498 0.7498,9.6998 0.7498,9.6998"></path></g></svg>
-  --> 
- 
-<svg class="fill" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="5" width="20" height="1.5" fill="black" rx="0.75" ry="0.75"/>
-    <rect x="2" y="11" width="20" height="1.5" fill="black" rx="0.75" ry="0.75"/>
-    <rect x="2" y="17" width="20" height="1.5" fill="black" rx="0.75" ry="0.75"/>
-</svg>
+            top: 56px;
+            right: -262px;
+            width: 250px;
+            height: 100%;
+            background: white;
+border-left:1px solid black;
+            transition: right 0.3s;
+            z-index: 1;
 
-  
-</nav>
-    <main>
-      <div class="grid">
-        <a href="#" class="item">
-            <div class="img"><img src="https://public-files.gumroad.com/vimxg8pkp20svppmrglue649h5im" alt="" srcset=""></div>
-            <div class="title">The Dark Intrigue</div>
-            
-            <div class="pricetag">
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    5.0 (96)
-                    
-                </div>
-                <div class="price">
-                    <div class="tag">₹349</div>
+        }
+        .drawer-inner {
+            padding: 0px;
+        }
+        .drawer-inner ul{
+        margin:0;
+        padding:0;
+        list-style:none;
+        }
+        .drawer-inner ul span{
+                border-bottom:1px solid black;
+                display:flex;
+                padding:8px;
+                justify-content:center;
+                
+        }
+        .drawer-inner li{
+        padding:14px 16px;
+        border-bottom:1px solid #000;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color 0.5s;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .overlay.active {
+            background-color: rgba(0, 0, 0, 0.2);
+            pointer-events: auto;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="drawer-container">
+            <div class="overlay" onclick="closeDrawer()"></div>
+            <div class="drawer">
+                <div class="drawer-inner">
+    <ul>
+    <span>Main Menu Navigation</span>
+    <li>Library</li>
+    <li>Index</li>
+    <li>Tools</li>
+    <li>Donate</li>
+    <li>Contact Us</li>
+    </ul>
                 </div>
             </div>
-        </a>
-
-        <a href="#" class="item">
-            <div class="img"><img src="blank.jpg" alt="" srcset=""></div>
-            <div class="title">Instagram Tenet</div>
-            
-            <div class="pricetag">
-                <div class="rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        5.0
-                </div>
-                <div class="price">
-                    <div class="tag">$49.99</div>
-                </div>
+        </div>
+        <nav>
+            <span>Alpha Tenet</span>
+            <svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g transform="translate(2.000000, 2.000000)">
+                    <circle cx="9.76659044" cy="9.76659044" r="8.9885584"></circle>
+                    <line x1="16.0183067" y1="16.4851259" x2="19.5423342" y2="20.0000001"></line>
+                </g>
+            </svg>
+            <!-- <svg class="line"
+					xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) translate(5.500000, 4.000000)"><line x1="6.7743" y1="15.7501" x2="6.7743" y2="0.7501"></line><path d="M12.7988,9.6998 C12.7988,9.6998 9.5378,15.7498 6.7758,15.7498 C4.0118,15.7498 0.7498,9.6998 0.7498,9.6998"></path></g></svg> 
+  -->
+            <svg onclick="toggleDrawer() " class="fill" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="5" width="20" height="1.5" fill="black" rx="0.75" ry="0.75" />
+                <rect x="2" y="11" width="20" height="1.5" fill="black" rx="0.75" ry="0.75" />
+                <rect x="2" y="17" width="20" height="1.5" fill="black" rx="0.75" ry="0.75" />
+            </svg>
+        </nav>
+        <main>
+            <div class="grid">
+                <a href="https://thedarkintrigue.com" class="item" target="_blank">
+                    <div class="img">
+                        <img src="https://public-files.gumroad.com/vimxg8pkp20svppmrglue649h5im" alt="" srcset="">
+                    </div>
+                    <div class="title">The Dark Intrigue</div>
+                    <div class="pricetag">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i> 5.0 (96)
+                        </div>
+                        <div class="price">
+                            <div class="tag">₹349</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://krishvishwakarma.gumroad.com/l/igmastery" class="item" target="_blank">
+                    <div class="img">
+                        <img alt="" src="blank.jpg" alt="" srcset="">
+                    </div>
+                    <div class="title">Instagram Tenet</div>
+                    <div class="pricetag">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i> 5.0
+                        </div>
+                        <div class="price">
+                            <div class="tag">₹799</div>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </a>
-        
-      </div>
-    </main>
-    <footer>
-        Alpha Tenet 2024
-        <br>
-        Made by  @Extreme_Krish
-    </footer>
-    <script src="https://kit.fontawesome.com/3701a9a57e.js" crossorigin="anonymous"></script>
-</body>
+        </main>
+        <footer> Alpha Tenet 2024 <br> Made by @Extreme_Krish </footer>
+        <script src="https://kit.fontawesome.com/3701a9a57e.js" crossorigin="anonymous"></script>
+    
+        <script>
+            function toggleDrawer() {
+                var drawer = document.querySelector('.drawer');
+                var overlay = document.querySelector('.overlay');
+    
+                if (!overlay.classList.contains("active")) {
+                    drawer.style.right = '0';
+                    overlay.classList.add('active');
+                } else {
+                    drawer.style.right = '-262px';
+                    overlay.classList.remove('active');
+                }
+            }
+    
+            function closeDrawer() {
+                var drawer = document.querySelector('.drawer');
+                var overlay = document.querySelector('.overlay');
+    
+                drawer.style.right = '-262px';
+                overlay.classList.remove('active');
+            }
+        </script>
+    </body>
 </html>
