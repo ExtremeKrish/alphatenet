@@ -44,7 +44,7 @@
             width: 100%;
             background-color: white;
             gap: 16px;
-            font-size: 18px;
+            font-size: 20px;
             z-index: 999;
             user-select: none;
         }
@@ -62,8 +62,8 @@
     stroke-width: 1.25;
         }
         nav svg.fill{
-            height: 20px;
-            width: 20px;
+            height: 24px;
+            width: 24px;
         }
         main{
             margin-top: 56px;
@@ -87,13 +87,14 @@
             flex-direction: column;
             box-shadow: 0 0 0 transparent;
     transition: box-shadow 0.2s ease-in-out;
+        -webkit-tap-highlight-color: transparent;
         }
         .grid .item:hover {
     box-shadow: 4px 4px 0 black;
 }
         .grid .item img{
             width: 100%;
-            border-radius: 4px 4px 0 0;
+            border-radius: 3px 3px 0 0;
         }
     
         .item .title{
@@ -103,43 +104,45 @@
             display: flex;
             font-weight: 400;
             border-bottom: 1px solid black;
-            font-size: 18px;
+            font-size: 19px;
         }
         .grid .item .pricetag{
-            
+            font-size: 15px;
             display: flex;
         }
         .grid .item .pricetag .rating{
             flex: 1;
             border-right: 1px solid black;
             padding: 16px;
+            align-items: center;
+            display: flex;
         }
         .grid .item .pricetag .price{
             padding: 16px;
         }
         .tag {
     position: relative;
-    width: 80px; /* Adjust as needed */
-    height: 30px; /* Adjust as needed */
+   /* width: 80px;  Adjust as needed */
+    height: 26px; /* Adjust as needed */
     background-color: #fe90e0;
     border:1px solid black ;
     border-right:none;
     display:flex;
     align-items:center;
     padding-left:8px;
-    
+    padding-right: 24px;
     }
     
     .tag::after {
     content: '';
     position: absolute;
     top: 0;
-    right:-1px;
+    right:0px;
     width: 0;
     height: 0;
-    border-top: 15px solid transparent; /* Half of the height */
-    border-bottom: 15px solid transparent; /* Half of the height */
-    border-right: 15px solid white;
+    border-top: 13px solid transparent; /* Half of the height */
+    border-bottom: 13px solid transparent; /* Half of the height */
+    border-right: 13px solid white;
     
      /* Same as the height */
     }
@@ -147,12 +150,12 @@
     content: '';
     position: absolute;
     top: 0;
-    right: 0px;
+    right: 1px;
     width: 0;
     height: 0;
-    border-top: 15px solid transparent; /* Half of the height */
-    border-bottom: 15px solid transparent; /* Half of the height */
-    border-right: 15px solid #000;
+    border-top: 13px solid transparent; /* Half of the height */
+    border-bottom: 13px solid transparent; /* Half of the height */
+    border-right: 13px solid #000;
     
      /* Same as the height */
     }
@@ -161,6 +164,9 @@
         text-align: center;
         padding: 16px;
         flex-direction: column;
+    }
+    .fa-solid{
+        margin-right: 4px
     }
     </style>
 </head>
@@ -171,11 +177,12 @@
        <!-- <svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) translate(5.500000, 4.000000)"><line x1="6.7743" y1="15.7501" x2="6.7743" y2="0.7501"></line><path d="M12.7988,9.6998 C12.7988,9.6998 9.5378,15.7498 6.7758,15.7498 C4.0118,15.7498 0.7498,9.6998 0.7498,9.6998"></path></g></svg>
   --> 
  
-  <svg class="fill" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="5" width="20" height="1.5" fill="black"/>
-    <rect x="2" y="11" width="20" height="1.5" fill="black"/>
-    <rect x="2" y="17" width="20" height="1.5" fill="black"/>
-  </svg>
+<svg class="fill" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="5" width="20" height="1.5" fill="black" rx="0.75" ry="0.75"/>
+    <rect x="2" y="11" width="20" height="1.5" fill="black" rx="0.75" ry="0.75"/>
+    <rect x="2" y="17" width="20" height="1.5" fill="black" rx="0.75" ry="0.75"/>
+</svg>
+
   
 </nav>
     <main>
@@ -185,31 +192,28 @@
             <div class="title">The Dark Intrigue</div>
             
             <div class="pricetag">
-                <div class="rating">x</div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    5.0 (96)
+                    
+                </div>
                 <div class="price">
-                    <div class="tag">$29.99</div>
+                    <div class="tag">₹349</div>
                 </div>
             </div>
         </a>
+
         <a href="#" class="item">
-            <div class="img"><img src="https://public-files.gumroad.com/vimxg8pkp20svppmrglue649h5im" alt="" srcset=""></div>
-            <div class="title">The Dark Intrigue</div>
+            <div class="img"><img src="blank.jpg" alt="" srcset=""></div>
+            <div class="title">Instagram Tenet</div>
             
             <div class="pricetag">
-                <div class="rating">x</div>
-                <div class="price">
-                    <div class="tag">$29.99</div>
+                <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        5.0
                 </div>
-            </div>
-        </a>
-        <a href="#" class="item">
-            <div class="img"><img src="https://public-files.gumroad.com/vimxg8pkp20svppmrglue649h5im" alt="" srcset=""></div>
-            <div class="title">The Dark Intrigue</div>
-            
-            <div class="pricetag">
-                <div class="rating">x</div>
                 <div class="price">
-                    <div class="tag">$29.99</div>
+                    <div class="tag">$49.99</div>
                 </div>
             </div>
         </a>
@@ -221,5 +225,6 @@
         <br>
         Made by  @Extreme_Krish
     </footer>
+    <script src="https://kit.fontawesome.com/3701a9a57e.js" crossorigin="anonymous"></script>
 </body>
 </html>
